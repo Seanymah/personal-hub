@@ -11,7 +11,7 @@
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
   body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; background: #F1F5F9; color: #1E293B; display: flex; height: 100vh; overflow: hidden; }
 
-  /* ââ Sidebar ââ */
+  /* ── Sidebar ── */
   #sidebar { width: 220px; background: #0F172A; display: flex; flex-direction: column; flex-shrink: 0; }
   #sidebar .logo { padding: 20px 18px 14px; font-size: 18px; font-weight: 700; color: #fff; letter-spacing: -0.3px; }
   #sidebar .logo span { color: #6366F1; }
@@ -20,22 +20,22 @@
   #sidebar nav a.active { background: #1E293B; color: #fff; border-left-color: #6366F1; }
   #sidebar nav a svg { width: 16px; height: 16px; flex-shrink: 0; }
 
-  /* ââ Main ââ */
+  /* ── Main ── */
   #main { flex: 1; display: flex; flex-direction: column; overflow: hidden; }
   #topbar { background: #fff; border-bottom: 1px solid #E2E8F0; padding: 14px 24px; display: flex; align-items: center; justify-content: space-between; }
   #topbar h1 { font-size: 18px; font-weight: 600; }
   #content { flex: 1; overflow-y: auto; padding: 24px; }
 
-  /* ââ Cards ââ */
+  /* ── Cards ── */
   .card { background: #fff; border-radius: 10px; border: 1px solid #E2E8F0; padding: 20px; }
   .card h3 { font-size: 13px; color: #64748B; font-weight: 500; margin-bottom: 6px; text-transform: uppercase; letter-spacing: .5px; }
   .card .big { font-size: 32px; font-weight: 700; color: #1E293B; }
 
-  /* ââ Grid ââ */
+  /* ── Grid ── */
   .grid4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; margin-bottom: 20px; }
   .grid2 { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 20px; }
 
-  /* ââ Buttons ââ */
+  /* ── Buttons ── */
   .btn { display: inline-flex; align-items: center; gap: 6px; padding: 8px 14px; border-radius: 6px; font-size: 13px; font-weight: 500; cursor: pointer; border: none; transition: opacity .15s; }
   .btn:hover { opacity: .85; }
   .btn-primary { background: #6366F1; color: #fff; }
@@ -43,7 +43,7 @@
   .btn-danger { background: #EF4444; color: #fff; }
   .btn-sm { padding: 5px 10px; font-size: 12px; }
 
-  /* ââ Badges ââ */
+  /* ── Badges ── */
   .badge { display: inline-block; padding: 2px 8px; border-radius: 20px; font-size: 11px; font-weight: 600; }
   .badge-todo { background: #F1F5F9; color: #64748B; }
   .badge-inprogress { background: #EFF6FF; color: #2563EB; }
@@ -53,7 +53,7 @@
   .badge-medium { background: #FFFBEB; color: #D97706; }
   .badge-high { background: #FEF2F2; color: #DC2626; }
 
-  /* ââ Table ââ */
+  /* ── Table ── */
   .tbl-wrap { overflow-x: auto; }
   table { width: 100%; border-collapse: collapse; font-size: 13px; }
   th { text-align: left; padding: 10px 12px; background: #F8FAFC; border-bottom: 1px solid #E2E8F0; font-size: 11px; font-weight: 600; color: #64748B; text-transform: uppercase; letter-spacing: .5px; white-space: nowrap; }
@@ -61,11 +61,11 @@
   tr:last-child td { border-bottom: none; }
   tr:hover td { background: #FAFAFA; }
 
-  /* ââ Filters ââ */
+  /* ── Filters ── */
   .filters { display: flex; gap: 10px; flex-wrap: wrap; margin-bottom: 16px; align-items: center; }
   .filters select, .filters input { padding: 7px 10px; border: 1px solid #E2E8F0; border-radius: 6px; font-size: 13px; background: #fff; color: #1E293B; }
 
-  /* ââ Modal ââ */
+  /* ── Modal ── */
   .modal-bg { position: fixed; inset: 0; background: rgba(0,0,0,.45); display: flex; align-items: center; justify-content: center; z-index: 1000; }
   .modal { background: #fff; border-radius: 12px; width: 580px; max-width: 96vw; max-height: 90vh; overflow-y: auto; box-shadow: 0 20px 60px rgba(0,0,0,.2); }
   .modal-header { padding: 20px 24px 0; display: flex; justify-content: space-between; align-items: center; }
@@ -80,13 +80,13 @@
   .form-grid2 { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
   .form-row input:focus, .form-row select:focus, .form-row textarea:focus { outline: 2px solid #6366F1; border-color: transparent; }
 
-  /* ââ Avatar ââ */
+  /* ── Avatar ── */
   .avatar { width: 28px; height: 28px; border-radius: 50%; display: inline-flex; align-items: center; justify-content: center; font-size: 11px; font-weight: 700; color: #fff; flex-shrink: 0; }
 
-  /* ââ Tag chips ââ */
+  /* ── Tag chips ── */
   .tag { display: inline-block; padding: 2px 8px; border-radius: 4px; font-size: 11px; font-weight: 600; color: #fff; white-space: nowrap; }
 
-  /* ââ Gantt ââ */
+  /* ── Gantt ── */
   #gantt-wrap { overflow-x: auto; }
   #gantt-container { position: relative; min-width: 800px; }
   .gantt-header { display: flex; background: #F8FAFC; border-bottom: 1px solid #E2E8F0; font-size: 11px; font-weight: 600; color: #64748B; }
@@ -101,31 +101,31 @@
   .gantt-bar { position: absolute; height: 22px; top: 9px; border-radius: 4px; display: flex; align-items: center; padding: 0 6px; font-size: 11px; font-weight: 600; color: #fff; white-space: nowrap; overflow: hidden; cursor: default; min-width: 4px; }
   .gantt-svg { position: absolute; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; overflow: visible; }
 
-  /* ââ Team tabs ââ */
+  /* ── Team tabs ── */
   .tab-bar { display: flex; gap: 4px; margin-bottom: 16px; border-bottom: 2px solid #E2E8F0; }
   .tab-bar button { padding: 8px 16px; font-size: 13px; font-weight: 500; background: none; border: none; cursor: pointer; color: #64748B; border-bottom: 2px solid transparent; margin-bottom: -2px; }
   .tab-bar button.active { color: #6366F1; border-bottom-color: #6366F1; }
 
-  /* ââ Setup banner ââ */
+  /* ── Setup banner ── */
   #setup-banner { background: #FFFBEB; border: 1px solid #FDE68A; border-radius: 8px; padding: 12px 16px; margin-bottom: 20px; font-size: 13px; color: #92400E; display: flex; align-items: center; gap: 10px; }
 
-  /* ââ Due soon ââ */
+  /* ── Due soon ── */
   .due-item { display: flex; align-items: center; justify-content: space-between; padding: 10px 0; border-bottom: 1px solid #F1F5F9; gap: 12px; }
   .due-item:last-child { border-bottom: none; }
   .due-badge { padding: 2px 8px; border-radius: 20px; font-size: 11px; font-weight: 700; white-space: nowrap; }
 
-  /* ââ Loading ââ */
+  /* ── Loading ── */
   #loading { position: fixed; inset: 0; background: rgba(255,255,255,.8); display: flex; align-items: center; justify-content: center; z-index: 2000; font-size: 15px; color: #6366F1; font-weight: 600; }
 
-  /* ââ Empty state ââ */
+  /* ── Empty state ── */
   .empty { text-align: center; padding: 48px 20px; color: #94A3B8; font-size: 14px; }
 
-  /* ââ Predecessor checkboxes ââ */
+  /* ── Predecessor checkboxes ── */
   .pred-list { max-height: 160px; overflow-y: auto; border: 1px solid #E2E8F0; border-radius: 6px; padding: 6px; }
   .pred-list label { display: flex; align-items: center; gap: 8px; padding: 4px 6px; font-size: 13px; cursor: pointer; border-radius: 4px; }
   .pred-list label:hover { background: #F8FAFC; }
 
-  /* ââ Color dot ââ */
+  /* ── Color dot ── */
   .dot { width: 10px; height: 10px; border-radius: 50%; display: inline-block; flex-shrink: 0; }
 
   .section-hdr { display: flex; align-items: center; justify-content: space-between; margin-bottom: 16px; }
@@ -134,14 +134,14 @@
 </head>
 <body>
 
-<div id="loading">Loadingâ¦</div>
+<div id="loading">Loading…</div>
 
 <script>
   const SUPABASE_URL      = 'https://bgtazvbahhsshhnwtgyp.supabase.co';
   const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImJndGF6dmJhaGhzc2hobnd0Z3lwIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODAzNjc2MDksImV4cCI6MjA5NTk0MzYwOX0.WFHx7WI2ld3qysWZX8_gzDPF8gwo9RNPZAWgaLax1MM';
 </script>
 
-<!-- ââ Sidebar ââ -->
+<!-- ── Sidebar ── -->
 <div id="sidebar">
   <div class="logo">Personal<span>Hub</span></div>
   <nav>
@@ -172,7 +172,7 @@
   </nav>
 </div>
 
-<!-- ââ Main content ââ -->
+<!-- ── Main content ── -->
 <div id="main">
   <div id="topbar">
     <h1 id="page-title">Dashboard</h1>
@@ -181,7 +181,7 @@
   <div id="content"></div>
 </div>
 
-<!-- ââ Task Modal ââ -->
+<!-- ── Task Modal ── -->
 <div id="task-modal" class="modal-bg" style="display:none">
   <div class="modal">
     <div class="modal-header">
@@ -191,7 +191,7 @@
     <div class="modal-body">
       <input type="hidden" id="f-id">
       <div class="form-row"><label>Title *</label><input id="f-title" placeholder="Task title"></div>
-      <div class="form-row"><label>Description</label><textarea id="f-desc" placeholder="Optional detailsâ¦"></textarea></div>
+      <div class="form-row"><label>Description</label><textarea id="f-desc" placeholder="Optional details…"></textarea></div>
       <div class="form-grid2">
         <div class="form-row"><label>Status</label>
           <select id="f-status">
@@ -211,15 +211,15 @@
       </div>
       <div class="form-grid2">
         <div class="form-row"><label>Project</label>
-          <select id="f-project"><option value="">â None â</option></select>
+          <select id="f-project"><option value="">— None —</option></select>
         </div>
         <div class="form-row"><label>Department</label>
-          <select id="f-dept"><option value="">â None â</option></select>
+          <select id="f-dept"><option value="">— None —</option></select>
         </div>
       </div>
       <div class="form-grid2">
         <div class="form-row"><label>Assignee</label>
-          <select id="f-assignee"><option value="">â Unassigned â</option></select>
+          <select id="f-assignee"><option value="">— Unassigned —</option></select>
         </div>
         <div class="form-row"><label>Actual Hours</label>
           <input id="f-hours" type="number" step="0.5" min="0" placeholder="e.g. 4.5">
@@ -242,7 +242,7 @@
   </div>
 </div>
 
-<!-- ââ Member Modal ââ -->
+<!-- ── Member Modal ── -->
 <div id="member-modal" class="modal-bg" style="display:none">
   <div class="modal" style="width:420px">
     <div class="modal-header">
@@ -254,7 +254,7 @@
       <div class="form-row"><label>Name *</label><input id="mm-name" placeholder="Full name"></div>
       <div class="form-row"><label>Role</label><input id="mm-role" placeholder="e.g. Developer"></div>
       <div class="form-row"><label>Email</label><input id="mm-email" type="email" placeholder="email@company.com"></div>
-      <div class="form-row"><label>Department</label><select id="mm-dept"><option value="">â None â</option></select></div>
+      <div class="form-row"><label>Department</label><select id="mm-dept"><option value="">— None —</option></select></div>
     </div>
     <div class="modal-footer">
       <button class="btn btn-danger btn-sm" id="mm-delete-btn" style="display:none;margin-right:auto" onclick="deleteMember()">Delete</button>
@@ -264,7 +264,7 @@
   </div>
 </div>
 
-<!-- ââ Dept Modal ââ -->
+<!-- ── Dept Modal ── -->
 <div id="dept-modal" class="modal-bg" style="display:none">
   <div class="modal" style="width:380px">
     <div class="modal-header">
@@ -284,7 +284,7 @@
   </div>
 </div>
 
-<!-- ââ Project Modal ââ -->
+<!-- ── Project Modal ── -->
 <div id="proj-modal" class="modal-bg" style="display:none">
   <div class="modal" style="width:480px">
     <div class="modal-header">
@@ -297,7 +297,7 @@
         <div class="form-row"><label>Name *</label><input id="pm-name" placeholder="Project name"></div>
         <div class="form-row"><label>Project ID</label><input id="pm-project-id" placeholder="e.g. PRJ-001"></div>
       </div>
-      <div class="form-row"><label>Description</label><textarea id="pm-desc" placeholder="Optional project descriptionâ¦"></textarea></div>
+      <div class="form-row"><label>Description</label><textarea id="pm-desc" placeholder="Optional project description…"></textarea></div>
       <div class="form-grid2">
         <div class="form-row"><label>Status</label>
           <select id="pm-status">
@@ -372,11 +372,11 @@ function renderView() {
   const actions = document.getElementById('topbar-actions');
   actions.innerHTML = '';
   if (v === 'tasks') {
-    actions.innerHTML = `<button class="btn btn-ghost btn-sm" onclick="exportExcel()">â¬ Excel</button> <button class="btn btn-ghost btn-sm" onclick="exportPDF()">â¬ PDF</button> <button class="btn btn-primary btn-sm" onclick="openModal()">ï¼ New Task</button>`;
+    actions.innerHTML = `<button class="btn btn-ghost btn-sm" onclick="exportExcel()">⬇ Excel</button> <button class="btn btn-ghost btn-sm" onclick="exportPDF()">⬇ PDF</button> <button class="btn btn-primary btn-sm" onclick="openModal()">＋ New Task</button>`;
     renderTasks();
   }
   else if (v === 'dashboard')  renderDashboard();
-  else if (v === 'projects')   { actions.innerHTML = '<button class="btn btn-primary btn-sm" onclick="openProjModal()">ï¼ New Project</button>'; renderProjects(); }
+  else if (v === 'projects')   { actions.innerHTML = '<button class="btn btn-primary btn-sm" onclick="openProjModal()">＋ New Project</button>'; renderProjects(); }
   else if (v === 'gantt')      renderGantt();
   else if (v === 'reports')    renderReports();
   else if (v === 'team')       renderTeam();
@@ -388,10 +388,10 @@ function memberColor(id)  { const i=members.findIndex(m=>m.id===id); return i>=0
 function initials(name)   { return (name||'?').split(' ').map(w=>w[0]).join('').toUpperCase().slice(0,2); }
 function projTag(id) { const p=projects.find(x=>x.id===id); if(!p)return ''; return `<span class="tag" style="background:${p.color||'#6366F1'}">${p.name}</span>`; }
 function deptTag(id) { const d=departments.find(x=>x.id===id); if(!d)return ''; return `<span class="tag" style="background:${d.color||'#94A3B8'}">${d.name}</span>`; }
-function avatarCell(id) { const m=members.find(x=>x.id===id); if(!m)return '<span style="color:#94A3B8;font-size:12px">â</span>'; return `<div style="display:flex;align-items:center;gap:6px"><div class="avatar" style="background:${memberColor(id)}">${initials(m.name)}</div><span style="font-size:13px">${m.name}</span></div>`; }
+function avatarCell(id) { const m=members.find(x=>x.id===id); if(!m)return '<span style="color:#94A3B8;font-size:12px">—</span>'; return `<div style="display:flex;align-items:center;gap:6px"><div class="avatar" style="background:${memberColor(id)}">${initials(m.name)}</div><span style="font-size:13px">${m.name}</span></div>`; }
 function setupBanner() { return ''; }
 
-// ââ Dashboard ââ
+// ── Dashboard ──
 function renderDashboard() {
   let filtered = tasks.filter(t =>
     (!dashFilterStatus   || t.status === dashFilterStatus) &&
@@ -432,7 +432,7 @@ function renderDashboard() {
   if(ctx) charts.status=new Chart(ctx,{type:'doughnut',data:{labels:['To Do','In Progress','Done','Blocked'],datasets:[{data:[filtered.filter(t=>t.status==='todo').length,filtered.filter(t=>t.status==='inprogress').length,filtered.filter(t=>t.status==='done').length,filtered.filter(t=>t.status==='blocked').length],backgroundColor:['#94A3B8','#3B82F6','#10B981','#EF4444'],borderWidth:2,borderColor:'#fff'}]},options:{cutout:'65%',plugins:{legend:{position:'bottom'}}}});
 }
 
-// ââ Projects ââ
+// ── Projects ──
 function renderProjects() {
   if(!projects.length){document.getElementById('content').innerHTML='<div class="empty">No projects yet.</div>';return;}
   const statusLabel={active:'Active',on_hold:'On Hold',completed:'Completed',cancelled:'Cancelled'};
@@ -445,8 +445,8 @@ function renderProjects() {
     return `<tr>
       <td><div style="display:flex;align-items:center;gap:8px"><span class="dot" style="background:${p.color||'#6366F1'}"></span><strong>${p.name}</strong>${p.project_id?`<span style="font-size:11px;color:#94A3B8;margin-left:4px">${p.project_id}</span>`:''}</div></td>
       <td><span style="background:${sc}20;color:${sc};padding:2px 8px;border-radius:20px;font-size:11px;font-weight:600">${sl}</span></td>
-      <td>${p.start_date||'â'}</td>
-      <td>${p.end_date||'â'}</td>
+      <td>${p.start_date||'—'}</td>
+      <td>${p.end_date||'—'}</td>
       <td>${count}</td>
       <td>${count?Math.round(done/count*100):0}%</td>
       <td><button class="btn btn-ghost btn-sm" onclick="openProjModal(${p.id})">Edit</button></td>
@@ -455,7 +455,7 @@ function renderProjects() {
   document.getElementById('content').innerHTML=`<div class="card"><div class="tbl-wrap"><table><thead><tr><th>Project</th><th>Status</th><th>Start</th><th>End</th><th>Tasks</th><th>Complete</th><th></th></tr></thead><tbody>${rows}</tbody></table></div></div>`;
 }
 
-// ââ Tasks ââ
+// ── Tasks ──
 function renderTasks() {
   let filtered=tasks.filter(t=>(!filterStatus||t.status===filterStatus)&&(!filterPriority||t.priority===filterPriority)&&(!filterAssignee||String(t.assignee_id)===filterAssignee)&&(!filterProject||String(t.project_id)===filterProject)&&(!filterDept||String(t.department_id)===filterDept));
   const memberOpts=members.map(m=>`<option value="${m.id}" ${filterAssignee===String(m.id)?'selected':''}>${m.name}</option>`).join('');
@@ -463,7 +463,7 @@ function renderTasks() {
   const deptOpts=departments.map(d=>`<option value="${d.id}" ${filterDept===String(d.id)?'selected':''}>${d.name}</option>`).join('');
   const rows=filtered.map(t=>{
     const preds=(predecessorsByTask[t.id]||[]).map(pid=>{const p=tasks.find(x=>x.id===pid);return p?`<span style="font-size:11px;background:#F1F5F9;border-radius:3px;padding:1px 5px;display:inline-block;margin:1px">${p.title}</span>`:''}).join(' ');
-    return `<tr><td style="max-width:200px;white-space:nowraw;overflow:hidden;text-overflow:ellipsis">${t.title}</td><td>${statusBadge(t.status)}</td><td>${priorityBadge(t.priority)}</td><td>${projTag(t.project_id)}</td><td>${deptTag(t.department_id)}</td><td>${avatarCell(t.assignee_id)}</td><td>${t.actual_hours!=null?t.actual_hours+'h':'â'}</td><td>${t.due_date||'â'}</td><td style="max-width:180px">${preds||'<span style="color:#94A3B8">â</span>'}</td><td><button class="btn btn-ghost btn-sm" onclick="openModal(${t.id})">Edit</button></td></tr>`;
+    return `<tr><td style="max-width:200px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">${t.title}</td><td>${statusBadge(t.status)}</td><td>${priorityBadge(t.priority)}</td><td>${projTag(t.project_id)}</td><td>${deptTag(t.department_id)}</td><td>${avatarCell(t.assignee_id)}</td><td>${t.actual_hours!=null?t.actual_hours+'h':'—'}</td><td>${t.due_date||'—'}</td><td style="max-width:180px">${preds||'<span style="color:#94A3B8">—</span>'}</td><td><button class="btn btn-ghost btn-sm" onclick="openModal(${t.id})">Edit</button></td></tr>`;
   }).join('');
   document.getElementById('content').innerHTML=`
     <div class="filters">
@@ -479,7 +479,7 @@ function renderTasks() {
     </table></div></div>`;
 }
 
-// ââ Gantt ââ
+// ── Gantt ──
 function renderGantt() {
   const ganttTasks=tasks.filter(t=>t.start_date&&t.due_date).sort((a,b)=>new Date(a.start_date)-new Date(b.start_date));
   if(!ganttTasks.length){document.getElementById('content').innerHTML='<div class="empty">No tasks with both Start Date and Due Date set.</div>';return;}
@@ -491,7 +491,7 @@ function renderGantt() {
   let cur=new Date(minDate);
   while(cur<=maxDate){const y=cur.getFullYear(),m=cur.getMonth();const start=new Date(y,m,1);const end=new Date(y,m+1,0);const clippedStart=start<minDate?minDate:start;const clippedEnd=end>maxDate?maxDate:end;const days=(clippedEnd-clippedStart)/86400000+1;months.push({label:start.toLocaleString('default',{month:'short',year:'numeric'}),days});cur.setMonth(cur.getMonth()+1);}
   const monthHeaders=months.map(m=>`<div class="gantt-month" style="flex:${m.days}">${m.label}</div>`).join('');
-  const rows=ganttTasks.map(t=>{const s=new Date(t.start_date),e=new Date(t.due_date);const left=((s-minDate)/86400000/totalDays*100).toFixed(3);const width=Math.max(((e-s)/86400000+1)/totalDays*100,0.5).toFixed(3);const col=STATUS_COLOR[t.status]||'#6366F1';const m=members.find(x=>x.id===t.assignee_id);return `<div class="gantt-row" data-task-id="${t.id}"><div class="gantt-row-label">${m?`<div class="avatar" style="background:${memberColor(t.assignee_id)};width:20px;height:20px;font-size:9px">${initials(m.name)}</div>`:''}<span class="task-name">${t.title}</span></div><div class="gantt-bars"><div class="gantt-bar" data-task-id="${t.id}" style="left:${left}%;width:${width}%;background:${col}" title="${t.title}: ${t.start_date} â ${t.due_date}">${parseFloat(width)>6?t.title:''}</div></div></div>`;}).join('');
+  const rows=ganttTasks.map(t=>{const s=new Date(t.start_date),e=new Date(t.due_date);const left=((s-minDate)/86400000/totalDays*100).toFixed(3);const width=Math.max(((e-s)/86400000+1)/totalDays*100,0.5).toFixed(3);const col=STATUS_COLOR[t.status]||'#6366F1';const m=members.find(x=>x.id===t.assignee_id);return `<div class="gantt-row" data-task-id="${t.id}"><div class="gantt-row-label">${m?`<div class="avatar" style="background:${memberColor(t.assignee_id)};width:20px;height:20px;font-size:9px">${initials(m.name)}</div>`:''}<span class="task-name">${t.title}</span></div><div class="gantt-bars"><div class="gantt-bar" data-task-id="${t.id}" style="left:${left}%;width:${width}%;background:${col}" title="${t.title}: ${t.start_date} → ${t.due_date}">${parseFloat(width)>6?t.title:''}</div></div></div>`;}).join('');
   document.getElementById('content').innerHTML=`<div class="card" style="padding:0;overflow:hidden"><div id="gantt-wrap"><div id="gantt-container"><div class="gantt-header"><div class="gantt-label-col">Task</div><div class="gantt-timeline">${monthHeaders}</div></div>${rows}<svg class="gantt-svg" id="gantt-svg"></svg></div></div></div>`;
   requestAnimationFrame(()=>requestAnimationFrame(()=>drawGanttArrows(ganttTasks,minDate,totalDays)));
 }
@@ -503,7 +503,7 @@ function drawGanttArrows(ganttTasks,minDate,totalDays) {
   ganttTasks.forEach(task=>{(predecessorsByTask[task.id]||[]).forEach(predId=>{const predTask=ganttTasks.find(t=>t.id===predId);if(!predTask)return;const predBar=container.querySelector(`.gantt-bar[data-task-id="${predId}"]`);const taskBar=container.querySelector(`.gantt-bar[data-task-id="${task.id}"]`);if(!predBar||!taskBar)return;const pRect=predBar.getBoundingClientRect();const tRect=taskBar.getBoundingClientRect();const x1=pRect.right-cRect.left,y1=pRect.top-cRect.top+pRect.height/2,x2=tRect.left-cRect.left,y2=tRect.top-cRect.top+tRect.height/2;let pathD;const gap=x2-x1;if(gap>24){const cx=(x1+x2)/2;pathD=`M ${x1} ${y1} C ${cx} ${y1} ${cx} ${y2} ${x2} ${y2}`;}else{const stepX=x1+12;const midY=(y1+y2)/2;pathD=`M ${x1} ${y1} L ${stepX} ${y1} L ${stepX} ${midY} L ${x2-8} ${midY} L ${x2-8} ${y2} L ${x2} ${y2}`;}const path=document.createElementNS('http://www.w3.org/2000/svg','path');path.setAttribute('d',pathD);path.setAttribute('stroke','#6366F1');path.setAttribute('stroke-width','1.5');path.setAttribute('stroke-dasharray','4 3');path.setAttribute('fill','none');path.setAttribute('opacity','0.7');path.setAttribute('marker-end','url(#arrow)');svg.appendChild(path);});});
 }
 
-// ââ Reports ââ
+// ── Reports ──
 function renderReports() {
   let rep=tasks.filter(t=>(!repFilterStatus||t.status===repFilterStatus)&&(!repFilterPriority||t.priority===repFilterPriority)&&(!repFilterAssignee||String(t.assignee_id)===repFilterAssignee)&&(!repFilterProject||String(t.project_id)===repFilterProject)&&(!repFilterDept||String(t.department_id)===repFilterDept)&&(!repFilterDateFrom||(t.due_date&&t.due_date>=repFilterDateFrom))&&(!repFilterDateTo||(t.due_date&&t.due_date<=repFilterDateTo)));
   const memberOpts=members.map(m=>`<option value="${m.id}" ${repFilterAssignee===String(m.id)?'selected':''}>${m.name}</option>`).join('');
@@ -521,7 +521,7 @@ function renderReports() {
         <input type="date" value="${repFilterDateFrom}" onchange="repFilterDateFrom=this.value;renderReports()" style="padding:6px 8px;border:1px solid #E2E8F0;border-radius:6px;font-size:13px">
         <span>to</span>
         <input type="date" value="${repFilterDateTo}" onchange="repFilterDateTo=this.value;renderReports()" style="padding:6px 8px;border:1px solid #E2E8F0;border-radius:6px;font-size:13px">
-        ${(repFilterDateFrom||repFilterDateTo)?`<button class="btn btn-ghost btn-sm" onclick="repFilterDateFrom='';repFilterDateTo='';renderReports()">â Clear</button>`:''}
+        ${(repFilterDateFrom||repFilterDateTo)?`<button class="btn btn-ghost btn-sm" onclick="repFilterDateFrom='';repFilterDateTo='';renderReports()">✕ Clear</button>`:''}
       </div>
     </div>
     <div style="font-size:12px;color:#64748B;margin-bottom:16px">Showing <strong>${rep.length}</strong> of ${tasks.length} tasks</div>
@@ -538,22 +538,22 @@ function renderReports() {
   const wlCtx=document.getElementById('wl-chart');
   if(wlCtx&&members.length) charts.wl=new Chart(wlCtx,{type:'bar',data:{labels:members.map(m=>m.name),datasets:[{data:members.map(m=>rep.filter(t=>t.assignee_id===m.id&&t.status!=='done').length),backgroundColor:members.map((_,i)=>MEMBER_COLORS[i%MEMBER_COLORS.length])}]},options:{plugins:{legend:{display:false}},scales:{y:{beginAtZero:true,ticks:{stepSize:1}}}}});
   const hrsCtx=document.getElementById('hrs-chart');
-  if(hrsCtx&&members.length) charts.hrs=new Chart(hrsCtx,{type:'bar',data:{labels:members.map(m=>m.name),datasets:[{label:'Hours',data:members.map(m=>rep.filter(t=>t.assignee_id===m.id).reduce((s,t)=>s+(parseFloat(t.actual_hours)||0),0)),backgroundColor:members.map((_,i)=>MEM@ER_COLORS[i%MEMBER_COLORS.length])}]},options:{plugins:{legend:{display:false}},scales:{y:{beginAtZero:true}}}});
+  if(hrsCtx&&members.length) charts.hrs=new Chart(hrsCtx,{type:'bar',data:{labels:members.map(m=>m.name),datasets:[{label:'Hours',data:members.map(m=>rep.filter(t=>t.assignee_id===m.id).reduce((s,t)=>s+(parseFloat(t.actual_hours)||0),0)),backgroundColor:members.map((_,i)=>MEMBER_COLORS[i%MEMBER_COLORS.length])}]},options:{plugins:{legend:{display:false}},scales:{y:{beginAtZero:true}}}});
   const projCtx=document.getElementById('proj-chart');
   if(projCtx&&projects.length) charts.proj=new Chart(projCtx,{type:'doughnut',data:{labels:projects.map(p=>p.name),datasets:[{data:projects.map(p=>rep.filter(t=>t.project_id===p.id).length),backgroundColor:projects.map(p=>p.color||'#6366F1'),borderWidth:2,borderColor:'#fff'}]},options:{cutout:'60%',plugins:{legend:{position:'bottom'}}}});
 }
 
-// ââ Team ââ
+// ── Team ──
 function renderTeam() {
-  document.getElementById('topbar-actions').innerHTML = teamTab==='members'?'<button class="btn btn-primary btn-sm" onclick="openMemberModal()">ï¼ New Member</button>':'<button class="btn btn-primary btn-sm" onclick="openDeptModal()">ï¼ New Department</button>';
-  const memberRows=members.map((m,i)=>{const d=departments.find(x=>x.id===m.department_id);const taskCount=tasks.filter(t=>t.assignee_id===m.id).length;return `<tr><td><div style="display:flex;align-items:center;gap:10px"><div class="avatar" style="background:${MEMBER_COLORS[i%MEMBER_COLORS.length]}">${initials(m.name)}</div><div><div style="font-weight:500">${m.name}</div><div style="font-size:11px;color:#64748B">${m.email||''}</div></div></div></td><td>${m.role||'â'}</td><td>${d?deptTag(d.id):'â'}</td><td>${taskCount}</td><td><button class="btn btn-ghost btn-sm" onclick="openMemberModal(${m.id})">Edit</button></td></tr>`;}).join('');
+  document.getElementById('topbar-actions').innerHTML = teamTab==='members'?'<button class="btn btn-primary btn-sm" onclick="openMemberModal()">＋ New Member</button>':'<button class="btn btn-primary btn-sm" onclick="openDeptModal()">＋ New Department</button>';
+  const memberRows=members.map((m,i)=>{const d=departments.find(x=>x.id===m.department_id);const taskCount=tasks.filter(t=>t.assignee_id===m.id).length;return `<tr><td><div style="display:flex;align-items:center;gap:10px"><div class="avatar" style="background:${MEMBER_COLORS[i%MEMBER_COLORS.length]}">${initials(m.name)}</div><div><div style="font-weight:500">${m.name}</div><div style="font-size:11px;color:#64748B">${m.email||''}</div></div></div></td><td>${m.role||'—'}</td><td>${d?deptTag(d.id):'—'}</td><td>${taskCount}</td><td><button class="btn btn-ghost btn-sm" onclick="openMemberModal(${m.id})">Edit</button></td></tr>`;}).join('');
   const deptRows=departments.map(d=>{const mc=members.filter(m=>m.department_id===d.id).length;const tc=tasks.filter(t=>t.department_id===d.id).length;return `<tr><td><div style="display:flex;align-items:center;gap:8px"><span class="dot" style="background:${d.color||'#6366F1'}"></span><strong>${d.name}</strong></div></td><td>${mc} member${mc!==1?'s':''}</td><td>${tc} task${tc!==1?'s':''}</td><td><button class="btn btn-ghost btn-sm" onclick="openDeptModal(${d.id})">Edit</button></td></tr>`;}).join('');
   document.getElementById('content').innerHTML=`
     <div class="tab-bar"><button class="${teamTab==='members'?'active':''}" onclick="teamTab='members';renderTeam()">Members</button><button class="${teamTab==='departments'?'active':''}" onclick="teamTab='departments';renderTeam()">Departments</button></div>
     <div class="card">${teamTab==='members'?`<div class="tbl-wrap"><table><thead><tr><th>Name</th><th>Role</th><th>Department</th><th>Tasks</th><th></th></tr></thead><tbody>${memberRows||'<tr><td colspan="5" style="text-align:center;color:#94A3B8;padding:24px">No members yet</td></tr>'}</tbody></table></div>`:`<div class="tbl-wrap"><table><thead><tr><th>Department</th><th>Members</th><th>Tasks</th><th></th></tr></thead><tbody>${deptRows||'<tr><td colspan="4" style="text-align:center;color:#94A3B8;padding:24px">No departments yet</td></tr>'}</tbody></table></div>`}</div>`;
 }
 
-// ââ Task Modal ââ
+// ── Task Modal ──
 function openModal(taskId) {
   const t=taskId?tasks.find(x=>x.id===taskId):null;
   document.getElementById('modal-title').textContent=t?'Edit Task':'New Task';
@@ -566,9 +566,9 @@ function openModal(taskId) {
   document.getElementById('f-start').value=t?(t.start_date||''):'';
   document.getElementById('f-due').value=t?(t.due_date||''):'';
   document.getElementById('delete-btn').style.display=t?'inline-flex':'none';
-  const projSel=document.getElementById('f-project');projSel.innerHTML='<option value="">â None â</option>'+projects.map(p=>`<option value="${p.id}">${p.name}</option>`).join('');if(t)projSel.value=t.project_id||'';
-  const deptSel=document.getElementById('f-dept');deptSel.innerHTML='<option value="">â None â</option>'+departments.map(d=>`<option value="${d.id}">${d.name}</option>`).join('');if(t)deptSel.value=t.department_id||'';
-  const asnSel=document.getElementById('f-assignee');asnSel.innerHTML='<option value="">â Unassigned â</option>'+members.map(m=>`<option value="${m.id}">${m.name}</option>`).join('');if(t)asnSel.value=t.assignee_id||'';
+  const projSel=document.getElementById('f-project');projSel.innerHTML='<option value="">— None —</option>'+projects.map(p=>`<option value="${p.id}">${p.name}</option>`).join('');if(t)projSel.value=t.project_id||'';
+  const deptSel=document.getElementById('f-dept');deptSel.innerHTML='<option value="">— None —</option>'+departments.map(d=>`<option value="${d.id}">${d.name}</option>`).join('');if(t)deptSel.value=t.department_id||'';
+  const asnSel=document.getElementById('f-assignee');asnSel.innerHTML='<option value="">— Unassigned —</option>'+members.map(m=>`<option value="${m.id}">${m.name}</option>`).join('');if(t)asnSel.value=t.assignee_id||'';
   const currentPreds=t?(predecessorsByTask[t.id]||[]):[];
   const predList=document.getElementById('pred-list');
   const otherTasks=tasks.filter(x=>x.id!==taskId);
@@ -586,19 +586,19 @@ async function saveTask() {
 }
 async function deleteTask(){const id=document.getElementById('f-id').value;if(!id||!confirm('Delete this task?'))return;await sb.from('tasks').delete().eq('id',id);closeModal();await fetchAll();renderView();}
 
-// ââ Member Modal ââ
-function openMemberModal(memberId){const m=memberId?members.find(x=>x.id===memberId):null;document.getElementById('mm-title').textContent=m?'Edit Member':'New Member';document.getElementById('mm-id').value=m?m.id:'';document.getElementById('mm-name').value=m?m.name:'';document.getElementById('mm-role').value=m?(m.role||''):'';document.getElementById('mm-email').value=m?(m.email||''):'';const ds=document.getElementById('mm-dept');ds.innerHTML='<option value="">â None â</option>'+departments.map(d=>`<option value="${d.id}">${d.name}</option>`).join('');if(m)ds.value=m.department_id||'';document.getElementById('mm-delete-btn').style.display=m?'inline-flex':'none';document.getElementById('member-modal').style.display='flex';}
+// ── Member Modal ──
+function openMemberModal(memberId){const m=memberId?members.find(x=>x.id===memberId):null;document.getElementById('mm-title').textContent=m?'Edit Member':'New Member';document.getElementById('mm-id').value=m?m.id:'';document.getElementById('mm-name').value=m?m.name:'';document.getElementById('mm-role').value=m?(m.role||''):'';document.getElementById('mm-email').value=m?(m.email||''):'';const ds=document.getElementById('mm-dept');ds.innerHTML='<option value="">— None —</option>'+departments.map(d=>`<option value="${d.id}">${d.name}</option>`).join('');if(m)ds.value=m.department_id||'';document.getElementById('mm-delete-btn').style.display=m?'inline-flex':'none';document.getElementById('member-modal').style.display='flex';}
 function closeMemberModal(){document.getElementById('member-modal').style.display='none';}
 async function saveMember(){const id=document.getElementById('mm-id').value;const name=document.getElementById('mm-name').value.trim();if(!name){alert('Name is required');return;}const payload={name,role:document.getElementById('mm-role').value.trim()||null,email:document.getElementById('mm-email').value.trim()||null,department_id:document.getElementById('mm-dept').value||null};if(id)await sb.from('team_members').update(payload).eq('id',id);else await sb.from('team_members').insert(payload);closeMemberModal();await fetchAll();renderView();}
 async function deleteMember(){const id=document.getElementById('mm-id').value;if(!id||!confirm('Delete this member?'))return;await sb.from('team_members').delete().eq('id',id);closeMemberModal();await fetchAll();renderView();}
 
-// ââ Dept Modal ââ
+// ── Dept Modal ──
 function openDeptModal(deptId){const d=deptId?departments.find(x=>x.id===deptId):null;document.getElementById('dm-title').textContent=d?'Edit Department':'New Department';document.getElementById('dm-id').value=d?d.id:'';document.getElementById('dm-name').value=d?d.name:'';document.getElementById('dm-color').value=d?(d.color||'#6366F1'):'#6366F1';document.getElementById('dm-delete-btn').style.display=d?'inline-flex':'none';document.getElementById('dept-modal').style.display='flex';}
 function closeDeptModal(){document.getElementById('dept-modal').style.display='none';}
 async function saveDept(){const id=document.getElementById('dm-id').value;const name=document.getElementById('dm-name').value.trim();if(!name){alert('Name is required');return;}const payload={name,color:document.getElementById('dm-color').value};if(id)await sb.from('departments').update(payload).eq('id',id);else await sb.from('departments').insert(payload);closeDeptModal();await fetchAll();renderView();}
 async function deleteDept(){const id=document.getElementById('dm-id').value;if(!id||!confirm('Delete this department?'))return;await sb.from('departments').delete().eq('id',id);closeDeptModal();await fetchAll();renderView();}
 
-// ââ Project Modal ââ
+// ── Project Modal ──
 function openProjModal(projId){
   const p=projId?projects.find(x=>x.id===projId):null;
   document.getElementById('pm-title').textContent=p?'Edit Project':'New Project';
@@ -633,10 +633,10 @@ async function saveProj(){
 }
 async function deleteProj(){const id=document.getElementById('pm-id').value;if(!id||!confirm('Delete this project?'))return;await sb.from('projects').delete().eq('id',id);closeProjModal();await fetchAll();renderView();}
 
-// ââ Modal background close ââ
+// ── Modal background close ──
 ['task-modal','member-modal','dept-modal','proj-modal'].forEach(id=>{document.getElementById(id).addEventListener('click',function(e){if(e.target===this)this.style.display='none';});});
 
-// ââ Exports ââ
+// ── Exports ──
 function getFilteredTasks(){return tasks.filter(t=>(!filterStatus||t.status===filterStatus)&&(!filterPriority||t.priority===filterPriority)&&(!filterAssignee||String(t.assignee_id)===filterAssignee)&&(!filterProject||String(t.project_id)===filterProject)&&(!filterDept||String(t.department_id)===filterDept));}
 function exportExcel(){
   if(typeof XLSX==='undefined'){alert('Excel library not loaded.');return;}
@@ -646,9 +646,9 @@ function exportExcel(){
 }
 function exportPDF(){
   const filtered=getFilteredTasks();
-  const rows=filtered.map(t=>{const assignee=members.find(m=>m.id===t.assignee_id);const project=projects.find(p=>p.id===t.project_id);const preds=(predecessorsByTask[t.id]||[]).map(pid=>{const p=tasks.find(x=>x.id===pid);return p?p.title:'';}).filter(Boolean).join(', ');const sc={todo:'#94A3B8',inprogress:'#3B82F6',done:'#10B981',blocked:'#EF4444'};const pc={low:'#16A34A',medium:'#D97706',high:'#DC2626'};return `<tr><td>${t.title}</td><td><span style="background:${sc[t.status]}20;color:${sc[t.status]};padding:2px 6px;border-radius:10px;font-size:11px;font-weight:600">${t.status}</span></td><td><span style="color:${pc[t.priority]};font-size:11px;font-weight:600">${t.priority}</span></td><td>${project?project.name:'â'}</td><td>${assignee?assignee.name:'â'}</td><td>${t.actual_hours!=null?t.actual_hours+'h':'â'}</td><td>${t.due_date||'â'}</td><td style="font-size:11px;color:#64748B">${preds||'â'}</td></tr>`;}).join('');
+  const rows=filtered.map(t=>{const assignee=members.find(m=>m.id===t.assignee_id);const project=projects.find(p=>p.id===t.project_id);const preds=(predecessorsByTask[t.id]||[]).map(pid=>{const p=tasks.find(x=>x.id===pid);return p?p.title:'';}).filter(Boolean).join(', ');const sc={todo:'#94A3B8',inprogress:'#3B82F6',done:'#10B981',blocked:'#EF4444'};const pc={low:'#16A34A',medium:'#D97706',high:'#DC2626'};return `<tr><td>${t.title}</td><td><span style="background:${sc[t.status]}20;color:${sc[t.status]};padding:2px 6px;border-radius:10px;font-size:11px;font-weight:600">${t.status}</span></td><td><span style="color:${pc[t.priority]};font-size:11px;font-weight:600">${t.priority}</span></td><td>${project?project.name:'—'}</td><td>${assignee?assignee.name:'—'}</td><td>${t.actual_hours!=null?t.actual_hours+'h':'—'}</td><td>${t.due_date||'—'}</td><td style="font-size:11px;color:#64748B">${preds||'—'}</td></tr>`;}).join('');
   const win=window.open('','_blank');
-  win.document.write(`<!DOCTYPE html><html><head><title>ProjectHub â Tasks</title><style>body{font-family:-apple-system,sans-serif;padding:32px;color:#1E293B}h1{font-size:22px;margin-bottom:4px}p{font-size:12px;color:#64748B;margin-bottom:20px}table{width:100%;border-collapse:collapse;font-size:12px}th{background:#F8FAFC;padding:8px 10px;text-align:left;border-bottom:2px solid #E2E8F0;font-size:11px;color:#64748B;text-transform:uppercase;letter-spacing:.4px}td{padding:8px 10px;border-bottom:1px solid #F1F5F9;vertical-align:top}@media print{body{padding:16px}}</style></head><body><h1>ProjectHub â Tasks</h1><p>Exported ${new Date().toLocaleDateString('en-AU',{day:'numeric',month:'long',year:'numeric'})} Â· ${filtered.length} task${filtered.length!==1?'s':''}</p><table><thead><tr><th>Title</th><th>Status</th><th>Priority</th><th>Project</th><th>Assignee</th><th>Hours</th><th>Due</th><th>Predecessors</th></tr></thead><tbody>${rows}</tbody></table><script>window.onload=()=>window.print()<\/script></body></html>`);
+  win.document.write(`<!DOCTYPE html><html><head><title>ProjectHub — Tasks</title><style>body{font-family:-apple-system,sans-serif;padding:32px;color:#1E293B}h1{font-size:22px;margin-bottom:4px}p{font-size:12px;color:#64748B;margin-bottom:20px}table{width:100%;border-collapse:collapse;font-size:12px}th{background:#F8FAFC;padding:8px 10px;text-align:left;border-bottom:2px solid #E2E8F0;font-size:11px;color:#64748B;text-transform:uppercase;letter-spacing:.4px}td{padding:8px 10px;border-bottom:1px solid #F1F5F9;vertical-align:top}@media print{body{padding:16px}}</style></head><body><h1>ProjectHub — Tasks</h1><p>Exported ${new Date().toLocaleDateString('en-AU',{day:'numeric',month:'long',year:'numeric'})} · ${filtered.length} task${filtered.length!==1?'s':''}</p><table><thead><tr><th>Title</th><th>Status</th><th>Priority</th><th>Project</th><th>Assignee</th><th>Hours</th><th>Due</th><th>Predecessors</th></tr></thead><tbody>${rows}</tbody></table><script>window.onload=()=>window.print()<\/script></body></html>`);
   win.document.close();
 }
 </script>
