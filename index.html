@@ -45,10 +45,12 @@
 
   /* ── Badges ── */
   .badge { display: inline-block; padding: 2px 8px; border-radius: 20px; font-size: 11px; font-weight: 600; }
-  .badge-todo { background: #F1F5F9; color: #64748B; }
+  .badge-not_started { background: #F1F5F9; color: #64748B; }
+  .badge-on_hold { background: #FFFBEB; color: #B45309; }
   .badge-inprogress { background: #EFF6FF; color: #2563EB; }
-  .badge-done { background: #ECFDF5; color: #059669; }
-  .badge-blocked { background: #FEF2F2; color: #DC2626; }
+  .badge-completed { background: #ECFDF5; color: #059669; }
+  .badge-cancelled { background: #F8FAFC; color: #94A3B8; }
+  .badge-overdue { background: #FEF2F2; color: #DC2626; }
   .badge-low { background: #F0FDF4; color: #16A34A; }
   .badge-medium { background: #FFFBEB; color: #D97706; }
   .badge-high { background: #FEF2F2; color: #DC2626; }
@@ -213,10 +215,12 @@
       <div class="form-grid2">
         <div class="form-row"><label>Status</label>
           <select id="f-status">
-            <option value="todo">To Do</option>
+            <option value="not_started">Not Started</option>
+            <option value="on_hold">On Hold</option>
             <option value="inprogress">In Progress</option>
-            <option value="done">Done</option>
-            <option value="blocked">Blocked</option>
+            <option value="completed">Completed</option>
+            <option value="cancelled">Cancelled</option>
+            <option value="overdue">Overdue</option>
           </select>
         </div>
         <div class="form-row"><label>Priority</label>
@@ -352,11 +356,11 @@ let currentView = 'dashboard', teamTab = 'members';
 let filterStatus = '', filterPriority = '', filterAssignee = '', filterProject = '', filterDept = '';
 let dashFilterStatus = '', dashFilterPriority = '', dashFilterAssignee = '', dashFilterProject = '', dashFilterDept = '';
 let repFilterStatus = '', repFilterPriority = '', repFilterAssignee = '', repFilterProject = '', repFilterDept = '', repFilterDateFrom = '', repFilterDateTo = '';
-let ganttFilterStatus = '', ganttFilterProject = '', ganttFilterAssignee = '';
+let ganttFilterStatus = '', ganttFilterProject = '', ganttFilterAssignee = '', ganttFilterFrom = '', ganttFilterTo = '';
 let charts = {};
 
 const MEMBER_COLORS = ['#3B82F6','#10B981','#F59E0B','#EF4444','#8B5CF6','#EC4899','#06B6D4','#84CC16','#F97316','#14B8A6'];
-const STATUS_COLOR  = { todo:'#94A3B8', inprogress:'#3B82F6', done:'#10B981', blocked:'#EF4444' };
+const STATUS_COLOR  = { not_started:'#94A3B8', on_hold:'#F59E0B', inprogress:'#3B82F6', completed:'#10B981', cancelled:'#CBD5E1', overdue:'#EF4444' };
 
 window.addEventListener('DOMContentLoaded', async () => {
   sb = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
@@ -408,7 +412,7 @@ function renderView() {
   else if (v === 'help')       renderHelp();
 }
 
-function statusBadge(s)   { const l={todo:'To Do',inprogress:'In Progress',done:'Done',blocked:'Blocked'}; return `<span class="badge badge-${s}">${l[s]||s}</span>`; }
+function statusBadge(s)   { const l={not_started:'Not Started',on_hold:'On Hold',inprogress:'In Progress',completed:'Completed',cancelled:'Cancelled',overdue:'Overdue'}; return `<span class="badge badge-${s}">${l[s]||s}</span>`; }
 function priorityBadge(p) { return `<span class="badge badge-${p}">${p.charAt(0).toUpperCase()+p.slice(1)}</span>`; }
 function memberColor(id)  { const i=members.findIndex(m=>m.id===id); return i>=0?MEMBER_COLORS[i%MEMBER_COLORS.length]:'#94A3B8'; }
 function initials(name)   { return (name||'?').split(' ').map(w=>w[0]).join('').toUpperCase().slice(0,2); }
@@ -426,7 +430,7 @@ function renderDashboard() {
     (!dashFilterProject  || String(t.project_id)  === dashFilterProject) &&
     (!dashFilterDept     || String(t.department_id) === dashFilterDept)
   );
-  const total=filtered.length, done=filtered.filter(t=>t.status==='done').length, inprog=filtered.filter(t=>t.status==='inprogress').length;
+  const total=filtered.length, done=filtered.filter(t=>t.status==='completed').length, inprog=filtered.filter(t=>t.status==='inprogress').length;
   const totalHours=filtered.reduce((s,t)=>s+(parseFloat(t.actual_hours)||0),0);
   const today=new Date(); today.setHours(0,0,0,0);
   const in30=new Date(today); in30.setDate(in30.getDate()+30);
@@ -438,7 +442,7 @@ function renderDashboard() {
   const deptOpts=departments.map(d=>`<option value="${d.id}" ${dashFilterDept===String(d.id)?'selected':''}>${d.name}</option>`).join('');
   document.getElementById('content').innerHTML = `
     <div class="filters" style="margin-bottom:20px">
-      <select onchange="dashFilterStatus=this.value;renderDashboard()"><option value="">All Statuses</option><option value="todo" ${dashFilterStatus==='todo'?'selected':''}>To Do</option><option value="inprogress" ${dashFilterStatus==='inprogress'?'selected':''}>In Progress</option><option value="done" ${dashFilterStatus==='done'?'selected':''}>Done</option><option value="blocked" ${dashFilterStatus==='blocked'?'selected':''}>Blocked</option></select>
+      <select onchange="dashFilterStatus=this.value;renderDashboard()"><option value="">All Statuses</option><option value="not_started" ${dashFilterStatus==='not_started'?'selected':''}>Not Started</option><option value="on_hold" ${dashFilterStatus==='on_hold'?'selected':''}>On Hold</option><option value="inprogress" ${dashFilterStatus==='inprogress'?'selected':''}>In Progress</option><option value="completed" ${dashFilterStatus==='completed'?'selected':''}>Completed</option><option value="cancelled" ${dashFilterStatus==='cancelled'?'selected':''}>Cancelled</option><option value="overdue" ${dashFilterStatus==='overdue'?'selected':''}>Overdue</option></select>
       <select onchange="dashFilterPriority=this.value;renderDashboard()"><option value="">All Priorities</option><option value="low" ${dashFilterPriority==='low'?'selected':''}>Low</option><option value="medium" ${dashFilterPriority==='medium'?'selected':''}>Medium</option><option value="high" ${dashFilterPriority==='high'?'selected':''}>High</option></select>
       <select onchange="dashFilterAssignee=this.value;renderDashboard()"><option value="">All Assignees</option>${memberOpts}</select>
       <select onchange="dashFilterProject=this.value;renderDashboard()"><option value="">All Projects</option>${projOpts}</select>
@@ -455,7 +459,7 @@ function renderDashboard() {
       <div class="card"><div class="section-hdr" style="margin-bottom:14px"><h2>Due Next 30 Days</h2></div>${dueRows}</div>
     </div>`;
   const ctx=document.getElementById('status-chart');
-  if(ctx) charts.status=new Chart(ctx,{type:'doughnut',data:{labels:['To Do','In Progress','Done','Blocked'],datasets:[{data:[filtered.filter(t=>t.status==='todo').length,filtered.filter(t=>t.status==='inprogress').length,filtered.filter(t=>t.status==='done').length,filtered.filter(t=>t.status==='blocked').length],backgroundColor:['#94A3B8','#3B82F6','#10B981','#EF4444'],borderWidth:2,borderColor:'#fff'}]},options:{cutout:'65%',plugins:{legend:{position:'bottom'}}}});
+  if(ctx) charts.status=new Chart(ctx,{type:'doughnut',data:{labels:['Not Started','On Hold','In Progress','Completed','Cancelled','Overdue'],datasets:[{data:[filtered.filter(t=>t.status==='not_started').length,filtered.filter(t=>t.status==='on_hold').length,filtered.filter(t=>t.status==='inprogress').length,filtered.filter(t=>t.status==='completed').length,filtered.filter(t=>t.status==='cancelled').length,filtered.filter(t=>t.status==='overdue').length],backgroundColor:['#94A3B8','#F59E0B','#3B82F6','#10B981','#CBD5E1','#EF4444'],borderWidth:2,borderColor:'#fff'}]},options:{cutout:'65%',plugins:{legend:{position:'bottom'}}}});
 }
 
 // ── Projects ──
@@ -493,7 +497,7 @@ function renderTasks() {
   }).join('');
   document.getElementById('content').innerHTML=`
     <div class="filters">
-      <select onchange="filterStatus=this.value;renderTasks()"><option value="">All Statuses</option><option value="todo" ${filterStatus==='todo'?'selected':''}>To Do</option><option value="inprogress" ${filterStatus==='inprogress'?'selected':''}>In Progress</option><option value="done" ${filterStatus==='done'?'selected':''}>Done</option><option value="blocked" ${filterStatus==='blocked'?'selected':''}>Blocked</option></select>
+      <select onchange="filterStatus=this.value;renderTasks()"><option value="">All Statuses</option><option value="not_started" ${filterStatus==='not_started'?'selected':''}>Not Started</option><option value="on_hold" ${filterStatus==='on_hold'?'selected':''}>On Hold</option><option value="inprogress" ${filterStatus==='inprogress'?'selected':''}>In Progress</option><option value="completed" ${filterStatus==='completed'?'selected':''}>Completed</option><option value="cancelled" ${filterStatus==='cancelled'?'selected':''}>Cancelled</option><option value="overdue" ${filterStatus==='overdue'?'selected':''}>Overdue</option></select>
       <select onchange="filterPriority=this.value;renderTasks()"><option value="">All Priorities</option><option value="low" ${filterPriority==='low'?'selected':''}>Low</option><option value="medium" ${filterPriority==='medium'?'selected':''}>Medium</option><option value="high" ${filterPriority==='high'?'selected':''}>High</option></select>
       <select onchange="filterAssignee=this.value;renderTasks()"><option value="">All Assignees</option>${memberOpts}</select>
       <select onchange="filterProject=this.value;renderTasks()"><option value="">All Projects</option>${projOpts}</select>
@@ -509,9 +513,9 @@ function renderTasks() {
 function renderGantt() {
   const memberOpts=members.map(m=>`<option value="${m.id}" ${ganttFilterAssignee===String(m.id)?'selected':''}>${m.name}</option>`).join('');
   const projOpts=projects.map(p=>`<option value="${p.id}" ${ganttFilterProject===String(p.id)?'selected':''}>${p.name}</option>`).join('');
-  const clearBtn=(ganttFilterStatus||ganttFilterProject||ganttFilterAssignee)?`<button class="btn btn-ghost btn-sm" onclick="ganttFilterStatus='';ganttFilterProject='';ganttFilterAssignee='';renderGantt()">&#x2715; Clear</button>`:'';
-  const filterBar=`<div class="filters" style="margin-bottom:16px"><select onchange="ganttFilterStatus=this.value;renderGantt()"><option value="">All Statuses</option><option value="todo" ${ganttFilterStatus==='todo'?'selected':''}>To Do</option><option value="inprogress" ${ganttFilterStatus==='inprogress'?'selected':''}>In Progress</option><option value="done" ${ganttFilterStatus==='done'?'selected':''}>Done</option><option value="blocked" ${ganttFilterStatus==='blocked'?'selected':''}>Blocked</option></select><select onchange="ganttFilterProject=this.value;renderGantt()"><option value="">All Projects</option>${projOpts}</select><select onchange="ganttFilterAssignee=this.value;renderGantt()"><option value="">All Assignees</option>${memberOpts}</select>${clearBtn}</div>`;
-  const ganttTasks=tasks.filter(t=>t.start_date&&t.due_date&&(!ganttFilterStatus||t.status===ganttFilterStatus)&&(!ganttFilterProject||String(t.project_id)===ganttFilterProject)&&(!ganttFilterAssignee||String(t.assignee_id)===ganttFilterAssignee)).sort((a,b)=>new Date(a.start_date)-new Date(b.start_date));
+  const clearBtn=(ganttFilterStatus||ganttFilterProject||ganttFilterAssignee||ganttFilterFrom||ganttFilterTo)?`<button class="btn btn-ghost btn-sm" onclick="ganttFilterStatus='';ganttFilterProject='';ganttFilterAssignee='';ganttFilterFrom='';ganttFilterTo='';renderGantt()">&#x2715; Clear</button>`:'';
+  const filterBar=`<div class="filters" style="margin-bottom:16px"><select onchange="ganttFilterStatus=this.value;renderGantt()"><option value="">All Statuses</option><option value="not_started" ${ganttFilterStatus==='not_started'?'selected':''}>Not Started</option><option value="on_hold" ${ganttFilterStatus==='on_hold'?'selected':''}>On Hold</option><option value="inprogress" ${ganttFilterStatus==='inprogress'?'selected':''}>In Progress</option><option value="completed" ${ganttFilterStatus==='completed'?'selected':''}>Completed</option><option value="cancelled" ${ganttFilterStatus==='cancelled'?'selected':''}>Cancelled</option><option value="overdue" ${ganttFilterStatus==='overdue'?'selected':''}>Overdue</option></select><select onchange="ganttFilterProject=this.value;renderGantt()"><option value="">All Projects</option>${projOpts}</select><select onchange="ganttFilterAssignee=this.value;renderGantt()"><option value="">All Assignees</option>${memberOpts}</select><span style="font-size:13px;color:#64748B">From</span><input type="date" value="${ganttFilterFrom}" onchange="ganttFilterFrom=this.value;renderGantt()" style="padding:6px 8px;border:1px solid #E2E8F0;border-radius:6px;font-size:13px"><span style="font-size:13px;color:#64748B">to</span><input type="date" value="${ganttFilterTo}" onchange="ganttFilterTo=this.value;renderGantt()" style="padding:6px 8px;border:1px solid #E2E8F0;border-radius:6px;font-size:13px">${clearBtn}</div>`;
+  const ganttTasks=tasks.filter(t=>t.start_date&&t.due_date&&(!ganttFilterStatus||t.status===ganttFilterStatus)&&(!ganttFilterProject||String(t.project_id)===ganttFilterProject)&&(!ganttFilterAssignee||String(t.assignee_id)===ganttFilterAssignee)&&(!ganttFilterFrom||t.due_date>=ganttFilterFrom)&&(!ganttFilterTo||t.start_date<=ganttFilterTo)).sort((a,b)=>new Date(a.start_date)-new Date(b.start_date));
   if(!ganttTasks.length){document.getElementById('content').innerHTML=filterBar+'<div class="empty">No tasks match filters or have both Start Date and Due Date set.</div>';return;}
   const allDates=ganttTasks.flatMap(t=>[new Date(t.start_date),new Date(t.due_date)]);
   let minDate=new Date(Math.min(...allDates)); minDate.setDate(1);
@@ -541,7 +545,7 @@ function renderReports() {
   const deptOpts=departments.map(d=>`<option value="${d.id}" ${repFilterDept===String(d.id)?'selected':''}>${d.name}</option>`).join('');
   document.getElementById('content').innerHTML=`
     <div class="filters" style="margin-bottom:20px;flex-wrap:wrap">
-      <select onchange="repFilterStatus=this.value;renderReports()"><option value="">All Statuses</option><option value="todo" ${repFilterStatus==='todo'?'selected':''}>To Do</option><option value="inprogress" ${repFilterStatus==='inprogress'?'selected':''}>In Progress</option><option value="done" ${repFilterStatus==='done'?'selected':''}>Done</option><option value="blocked" ${repFilterStatus==='blocked'?'selected':''}>Blocked</option></select>
+      <select onchange="repFilterStatus=this.value;renderReports()"><option value="">All Statuses</option><option value="not_started" ${repFilterStatus==='not_started'?'selected':''}>Not Started</option><option value="on_hold" ${repFilterStatus==='on_hold'?'selected':''}>On Hold</option><option value="inprogress" ${repFilterStatus==='inprogress'?'selected':''}>In Progress</option><option value="completed" ${repFilterStatus==='completed'?'selected':''}>Completed</option><option value="cancelled" ${repFilterStatus==='cancelled'?'selected':''}>Cancelled</option><option value="overdue" ${repFilterStatus==='overdue'?'selected':''}>Overdue</option></select>
       <select onchange="repFilterPriority=this.value;renderReports()"><option value="">All Priorities</option><option value="low" ${repFilterPriority==='low'?'selected':''}>Low</option><option value="medium" ${repFilterPriority==='medium'?'selected':''}>Medium</option><option value="high" ${repFilterPriority==='high'?'selected':''}>High</option></select>
       <select onchange="repFilterAssignee=this.value;renderReports()"><option value="">All Assignees</option>${memberOpts}</select>
       <select onchange="repFilterProject=this.value;renderReports()"><option value="">All Projects</option>${projOpts}</select>
@@ -590,7 +594,7 @@ function openModal(taskId) {
   document.getElementById('f-id').value=t?t.id:'';
   document.getElementById('f-title').value=t?t.title:'';
   document.getElementById('f-desc').value=t?(t.description||''):'';
-  document.getElementById('f-status').value=t?t.status:'todo';
+  document.getElementById('f-status').value=t?t.status:'not_started';
   document.getElementById('f-priority').value=t?t.priority:'medium';
   document.getElementById('f-hours').value=t&&t.actual_hours!=null?t.actual_hours:'';
   document.getElementById('f-start').value=t?(t.start_date||''):'';
@@ -678,9 +682,9 @@ function exportExcel(){
 }
 function exportPDF(){
   const filtered=getFilteredTasks();
-  const rows=filtered.map(t=>{const assignee=members.find(m=>m.id===t.assignee_id);const project=projects.find(p=>p.id===t.project_id);const preds=(predecessorsByTask[t.id]||[]).map(pid=>{const p=tasks.find(x=>x.id===pid);return p?p.title:'';}).filter(Boolean).join(', ');const sc={todo:'#94A3B8',inprogress:'#3B82F6',done:'#10B981',blocked:'#EF4444'};const pc={low:'#16A34A',medium:'#D97706',high:'#DC2626'};return `<tr><td>${t.title}</td><td><span style="background:${sc[t.status]}20;color:${sc[t.status]};padding:2px 6px;border-radius:10px;font-size:11px;font-weight:600">${t.status}</span></td><td><span style="color:${pc[t.priority]};font-size:11px;font-weight:600">${t.priority}</span></td><td>${project?project.name:'—'}</td><td>${assignee?assignee.name:'—'}</td><td>${t.actual_hours!=null?t.actual_hours+'h':'—'}</td><td>${t.due_date||'—'}</td><td style="font-size:11px;color:#64748B">${preds||'—'}</td></tr>`;}).join('');
+  const rows=filtered.map(t=>{const assignee=members.find(m=>m.id===t.assignee_id);const project=projects.find(p=>p.id===t.project_id);const preds=(predecessorsByTask[t.id]||[]).map(pid=>{const p=tasks.find(x=>x.id===pid);return p?p.title:'';}).filter(Boolean).join(', ');const sc={not_started:'#94A3B8',on_hold:'#F59E0B',inprogress:'#3B82F6',completed:'#10B981',cancelled:'#CBD5E1',overdue:'#EF4444'};const pc={low:'#16A34A',medium:'#D97706',high:'#DC2626'};return `<tr><td>${t.title}</td><td><span style="background:${sc[t.status]}20;color:${sc[t.status]};padding:2px 6px;border-radius:10px;font-size:11px;font-weight:600">${t.status}</span></td><td><span style="color:${pc[t.priority]};font-size:11px;font-weight:600">${t.priority}</span></td><td>${project?project.name:'—'}</td><td>${assignee?assignee.name:'—'}</td><td>${t.actual_hours!=null?t.actual_hours+'h':'—'}</td><td>${t.due_date||'—'}</td><td style="font-size:11px;color:#64748B">${preds||'—'}</td></tr>`;}).join('');
   const win=window.open('','_blank');
-  win.document.write(`<!DOCTYPE html><html><head><title>ProjectHub — Tasks</title><style>body{font-family:-apple-system,sans-serif;padding:32px;color:#1E293B}h1{font-size:22px;margin-bottom:4px}p{font-size:12px;color:#64748B;margin-bottom:20px}table{width:100%;border-collapse:collapse;font-size:12px}th{background:#F8FAFC;padding:8px 10px;text-align:left;border-bottom:2px solid #E2E8F0;font-size:11px;color:#64748B;text-transform:uppercase;letter-spacing:.4px}td{padding:8px 10px;border-bottom:1px solid #F1F5F9;vertical-align:top}@media print{body{padding:16px}}</style></head><body><h1>ProjectHub — Tasks</h1><p>Exported ${new Date().toLocaleDateString('en-AU',{day:'numeric',month:'long',year:'numeric'})} · ${filtered.length} task${filtered.length!==1?'s':''}</p><table><thead><tr><th>Title</th><th>Status</th><th>Priority</th><th>Project</th><th>Assignee</th><th>Hours</th><th>Due</th><th>Predecessors</th></tr></thead><tbody>${rows}</tbody></table><script>window.onload=()=>window.print()<\/script></body></html>`);
+  win.document.write(`<!DOCTYPE html><html><head><title>ProjectHub — Tasks</title><style>body{font-family:-apple-system,sans-serif;padding:32px;color:#1E293B}h1{font-size:22px;margin-bottom:4px}p{font-size:12px;color:#64748B;margin-bottom:20px}table{width:100%;border-collapse:collapse;font-size:12px}th{background:#F8FAFC;padding:8px 10px;text-align:left;border-bottom:2px solid #E2E8F0;font-size:11px;color:#64748B;text-transform:uppercase;letter-spacing:.4px}td{padding:8px 10px;border-bottom:1px solid #F1F5F9;vertical-align:top}@media print{body{padding:16px}}</style></head><body><h1>ProjectHub — Tasks</h1><p>Exported ${new Date().toLocaleDateString('en-AU',{day:'numeric',month:'long',year:'numeric'})} � ${filtered.length} task${filtered.length!==1?'s':''}</p><table><thead><tr><th>Title</th><th>Status</th><th>Priority</th><th>Project</th><th>Assignee</th><th>Hours</th><th>Due</th><th>Predecessors</th></tr></thead><tbody>${rows}</tbody></table><script>window.onload=()=>window.print()<\/script></body></html>`);
   win.document.close();
 }
 
@@ -760,10 +764,12 @@ function renderHelp() {
           <div class="help-card">
             <h4>Status values</h4>
             <ul>
-              <li><strong>To Do</strong> &mdash; not yet started</li>
+              <li><strong>Not Started</strong> &mdash; not yet begun</li>
+              <li><strong>On Hold</strong> &mdash; paused or waiting</li>
               <li><strong>In Progress</strong> &mdash; actively being worked on</li>
-              <li><strong>Done</strong> &mdash; completed</li>
-              <li><strong>Blocked</strong> &mdash; waiting on something</li>
+              <li><strong>Completed</strong> &mdash; finished</li>
+              <li><strong>Cancelled</strong> &mdash; no longer needed</li>
+              <li><strong>Overdue</strong> &mdash; past due date</li>
             </ul>
           </div>
           <div class="help-card">
