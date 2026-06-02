@@ -568,7 +568,7 @@ function renderReports() {
   const wlCtx=document.getElementById('wl-chart');
   if(wlCtx&&members.length) charts.wl=new Chart(wlCtx,{type:'bar',data:{labels:members.map(m=>m.name),datasets:[{data:members.map(m=>rep.filter(t=>t.assignee_id===m.id&&t.status!=='done').length),backgroundColor:members.map((_,i)=>MEMBER_COLORS[i%MEMBER_COLORS.length])}]},options:{plugins:{legend:{display:false}},scales:{y:{beginAtZero:true,ticks:{stepSize:1}}}}});
   const hrsCtx=document.getElementById('hrs-chart');
-  if(hrsCtx&&members.length) charts.hrs=new Chart(hrsCtx,{type:'bar',data:{labels:members.map(m=>m.name),datasets:[{label:'Hours',data:members.map(m=>rep.filter(t=>t.assignee_id===m.id).reduce((s,t)=>s+(parseFloat(t.actual_hours)||0),0)),backgroundColor:members.map((_,i)=>MEM@ER_COLORS[i%MEMBER_COLORS.length])}]},options:{plugins:{legend:{display:false}},scales:{y:{beginAtZero:true}}}});
+  if(hrsCtx&&members.length) charts.hrs=new Chart(hrsCtx,{type:'bar',data:{labels:members.map(m=>m.name),datasets:[{label:'Hours',data:members.map(m=>rep.filter(t=>t.assignee_id===m.id).reduce((s,t)=>s+(parseFloat(t.actual_hours)||0),0)),backgroundColor:members.map((_,i)=>MEMBER_COLORS[i%MEMBER_COLORS.length])}]},options:{plugins:{legend:{display:false}},scales:{y:{beginAtZero:true}}}});
   const projCtx=document.getElementById('proj-chart');
   if(projCtx&&projects.length) charts.proj=new Chart(projCtx,{type:'doughnut',data:{labels:projects.map(p=>p.name),datasets:[{data:projects.map(p=>rep.filter(t=>t.project_id===p.id).length),backgroundColor:projects.map(p=>p.color||'#6366F1'),borderWidth:2,borderColor:'#fff'}]},options:{cutout:'60%',plugins:{legend:{position:'bottom'}}}});
 }
